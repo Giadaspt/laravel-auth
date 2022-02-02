@@ -29,6 +29,3 @@ Route::middleware('auth')
         Route::resource('/posts', 'PostController');
     });
 
-// Route::get("{any?}", function(){
-//     return view('layouts.app');
-// })->where('any', '.*');

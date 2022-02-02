@@ -23,12 +23,21 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('home') }}">
-                    Torna al sito
-                </a>
-                <a href="{{ route('admin.posts.index') }}">
-                    Tutti i post
-                </a>
+                <span>
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        Torna al sito
+                    </a>
+                </span>
+                <span class="mr-3 ">
+                    <a href="{{ route('admin.posts.index') }}">
+                        Tutti i post
+                    </a>
+                </span>
+                <span class="mr-3">
+                    <a href="{{ route('admin.posts.create') }}">
+                        Crea il post
+                    </a>
+                </span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
