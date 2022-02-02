@@ -25,8 +25,10 @@ Route::middleware('auth')
     ->prefix('admin')
     ->group(function(){
         Route::get('/', 'HomeController@index')->name('index');
+
+        Route::resource('/posts', 'PostsController');
     });
 
-Route::get("{any?}", function(){
-    return view('layouts.app');
-})->where('any', '.*');
+// Route::get("{any?}", function(){
+//     return view('layouts.app');
+// })->where('any', '.*');
