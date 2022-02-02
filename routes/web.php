@@ -28,5 +28,5 @@ Route::middleware('auth')
     });
 
 Route::get("{any?}", function(){
-    return view('guest.welcome');
+    return view('layouts.app');
 })->where('any', '.*');
