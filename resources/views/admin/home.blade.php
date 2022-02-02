@@ -13,8 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                    Perfetto login riuscito, {{ $user->name }}!
                 </div>
             </div>
         </div>
