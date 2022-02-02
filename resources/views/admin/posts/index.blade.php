@@ -3,7 +3,7 @@
 @section('content')
   <div class="container">
     <h2>Tutti i post</h2>
-    {{-- <table class="table">
+    <table class="table">
       <thead>
         <tr>
           <th scope="col">Id</th>
@@ -20,6 +20,6 @@
           </tr>
         @endforeach
       </tbody>
-    </table> --}}
+    </table>
   </div>
 @endsection
