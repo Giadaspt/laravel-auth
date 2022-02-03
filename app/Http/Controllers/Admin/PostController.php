@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+// use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 
 class PostController extends Controller
@@ -49,10 +49,11 @@ class PostController extends Controller
         // $new_post->content = $data['content'];
         $new_post->fill($data);
 
-        $new_post->slug = $this->makeSlug($new_post->title);
+        $new_post->slug = Post::makeSlug($data['title']);
         $new_post->save();
+
         return redirect()->route('admin.posts.show', $new_post);
-        dd($data);
+
     }
 
     /**
@@ -61,8 +62,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
+        $post = Post::find($id);
+
         if($post){
             return view('admin.posts.show', compact('post'));
         }
@@ -75,9 +78,14 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+       $post = Post::find($id);
+
+       if($post){
+        return view('admin.posts.edit', compact('post'));
+       }
+       abort(404, "Qeusta pagina non esiste");
     }
 
     /**
@@ -89,7 +97,18 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+
+        $request->validate($this->makeValid(), $this->makeMessage() );
+
+        $data = $request->all();
+
+        if($data['title'] != $post->title){
+           $data['slug'] =  Post::makeSlug($data['title']);
+        };
+        
+        $post->update($data);
+
+        return redirect()->route('admin.posts.show', compact('post'));
     }
 
     /**
@@ -100,11 +119,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        
-    }
+        $post->delete();
 
-    private function makeSlug($str){
-        return Str::slug($str);
+        return redirect()->route('admin.posts.index')->with('deleted', $post->title);
     }
 
     private function makeValid(){
@@ -121,7 +138,7 @@ class PostController extends Controller
             "title.max"=>"Puoi inseirire massimo 50 caratteri",
             "content.max"=>"Puoi inseirire massimo 500 caratteri",
             "content.min"=>"Devi inseirire minimo 2 caratteri",
-            "content.required"=>"Questo campo è obbligatorio",
+            "content.required"=>"Il contenuto è un campo è obbligatorio",
         ];
     }
 }

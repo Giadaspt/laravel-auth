@@ -3,6 +3,12 @@
 @section('content')
   <div class="container">
     <h2>Tutti i post</h2>
+
+    @if (session('deleted'))
+    <div class="alert alert-danger" role="alert">
+      Il post è stato cancellato
+    </div>
+    @endif
     <table class="table">
       <thead>
         <tr>
@@ -24,13 +30,18 @@
             </td>
             <td>
               <button class="btn btn-warning bg-white">
-                <a href=""> Modifica </a>
+                <a href="{{ route('admin.posts.edit', $post) }}"> Modifica </a>
               </button>
             </td>
             <td>
-              <form action="">
-                <button type="submit" class="btn btn-danger bg-white">
-                  <a href=""> Elimina </a>
+              <form onsubmit="return confirm( 'Vuoi eliminare questo elemento : {{ $post->title }} ?' )" 
+                action="{{ route('admin.posts.destroy', $post) }} " 
+                method="POST">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="btn btn-danger ">
+                  Elimina 
                 </button>
               </form>
             </td>
@@ -42,4 +53,8 @@
       {{ $posts->links() }}
     </div>
   </div>
+@endsection
+
+@section('title')
+  Elenco post
 @endsection

@@ -3,7 +3,7 @@
 @section('content')
   <div class="container">
     <h2>
-      Crea il tuo post
+      Modifica il post: {{$post->title}}
     </h2>
 
     @if ($errors->any())
@@ -16,13 +16,13 @@
     </div>
     @endif
     
-    <form action="{{ route("admin.posts.store") }}" method="POST">
+    <form action="{{ route("admin.posts.update", $post) }}" method="POST">
       @csrf
-      
+      @method('PUT')
       <div class="mb-3">
         <label for="title" class="form-label">Titolo del post</label>
         <input type="text" class="form-control @error('title') is-invalid @enderror" 
-        value="{{ old('title') }}"
+        value="{{ old('title', $post->title) }}"
         name="title"
         id="title" placeholder="Inserisci il titolo del post">
         @error('title')
@@ -33,11 +33,9 @@
       </div>
       <div class="mb-3">
         <label for="content" class="form-label">Scrivi qui quello che vuoi</label>
-        <textarea class="form-control @error('content') is-invalid @enderror" 
+        <textarea class="form-control @error('content') is-invalid @enderror "
         name="content"
-        id="exampleFormControlTextarea1" rows="3">
-        {{ old('content') }}
-        </textarea>
+        id="exampleFormControlTextarea1" rows="3">{{ old('content', $post->content) }}</textarea>
         @error('content')
           <p class="text-danger">
             {{$message}}
