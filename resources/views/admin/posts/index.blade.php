@@ -49,13 +49,15 @@
         @endforeach
       </tbody>
     </table>
-    <button class="btn btn-primary mr-2">
-      <a class="text-white" href=" {{ URL::previous() }} "> Indietro </a>
-    </button>
-    <div class="d-flex justify-content-end">
-      {{ $posts->links() }}
+    <section class="d-flex justify-content-between">
+      <button class="btn btn-primary mt-2">
+        <a class="text-white" href=" {{ URL::previous() }} "> Indietro </a>
+      </button>
+      <div >
+        {{ $posts->links() }}
+      </div>
     </div>
-  </div>
+    </section>
 @endsection
 
 @section('title')
