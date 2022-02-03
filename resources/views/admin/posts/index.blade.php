@@ -24,13 +24,13 @@
             <td>{{ $post->title }}</td>
             <td>{{ $post->content }}</td>
             <td>
-              <button class="btn btn-info bg-white">
-                <a href="{{ route('admin.posts.show', $post) }}"> Show </a>
+              <button class="btn btn-info">
+                <a class="text-white" href="{{ route('admin.posts.show', $post) }}"> Show </a>
               </button>
             </td>
             <td>
-              <button class="btn btn-warning bg-white">
-                <a href="{{ route('admin.posts.edit', $post) }}"> Modifica </a>
+              <button class="btn btn-warning">
+                <a class="text-white" href="{{ route('admin.posts.edit', $post) }}"> Modifica </a>
               </button>
             </td>
             <td>
@@ -49,6 +49,9 @@
         @endforeach
       </tbody>
     </table>
+    <button class="btn btn-primary mr-2">
+      <a class="text-white" href=" {{ URL::previous() }} "> Indietro </a>
+    </button>
     <div class="d-flex justify-content-end">
       {{ $posts->links() }}
     </div>

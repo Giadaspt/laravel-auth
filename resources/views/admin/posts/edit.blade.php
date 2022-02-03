@@ -42,12 +42,19 @@
           </p>
         @enderror
       </div>
-      <button type="submit" class="btn btn-primary mt-3">
-        Invia
-      </button>
-      <button type="reset" class="btn btn-secondary mt-3">
-        Cancella
-      </button>
+      <section  class="d-flex justify-content-between">
+        <button class="btn btn-primary mr-2">
+          <a class="text-white" href=" {{ URL::previous() }} "> Indietro </a>
+        </button>
+        <div>
+          <button type="submit" class="btn btn-primary  mr-2">
+            Invia
+          </button>
+          <button type="reset" class="btn btn-secondary ">
+            Cancella
+          </button>
+        </div>
+      </section>
     </form>
   </div>
 @endsection
