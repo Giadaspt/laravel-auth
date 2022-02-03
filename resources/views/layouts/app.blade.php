@@ -45,15 +45,13 @@
                         <li class="nav-item">
                             <a class="nav-link {{ (Route::currentRouteName() === 'login') ? 'active' : '' }}" href="{{ route('login') }}"> Login </a>
                         </li>
-                        @if (Route::has('register'))
                         <li class="nav-item ">
                             <a class="nav-link {{ (Route::currentRouteName() === 'register') ? 'active' : '' }}" href="{{ route('register') }}"> Register </a>
                         </li>
-                        @endif
                     @endguest
 
                     @auth
-                        <a href="{{ route('logout') }}"
+                        <a class="nav-link"  href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                         Logout
