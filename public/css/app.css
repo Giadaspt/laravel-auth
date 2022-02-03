@@ -10966,11 +10966,25 @@ a {
   text-decoration: none;
 }
 
+ul,
+li {
+  list-style: none;
+}
+
 .btn {
   color: white;
 }
 
 h2 {
   text-transform: capitalize;
+}
+
+nav a {
+  color: white;
+}
+
+.active {
+  color: #6574cd;
+  font-weight: 600;
 }
 

@@ -10,3 +10,13 @@
 
 @import 'resources/sass/general';
 @import 'resources/sass/show';
+
+
+nav a {
+  color: $white;
+}
+
+.active {
+  color: $indigo;
+  font-weight: 600;
+}
